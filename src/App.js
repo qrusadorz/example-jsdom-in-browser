@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import ProTip from './ProTip';
 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -22,7 +25,8 @@ function Copyright() {
 export default function App() {
 
   function handleClick() {
-    console.log("click!");
+    const dom = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
+    console.log(dom.window.document.querySelector("p").textContent);
   }
 
   return (
